@@ -89,7 +89,7 @@ def read_team_map(path: str) -> dict[int, str]:
                 if not header_seen:
                     normalized_header = list(row)
                     if normalized_header:
-                        # Strip BOM that Windows editors tend to prepend to UTF-8 type files (from my research)
+                        # tolerate a UTF-8 BOM in the first header cell
                         normalized_header[0] = normalized_header[0].lstrip("\ufeff")
                     if normalized_header != ["TeamId", "Name"]:
                         raise ReportError(
